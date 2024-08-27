@@ -42,6 +42,8 @@ export default function Sidebar() {
         }
       }
     })
+
+    const splitActive = isActive ? isActive.split("_").slice(0, 2).join("_") : ''
     return (
       <div>
         {
@@ -58,7 +60,7 @@ export default function Sidebar() {
                       if(menu.show)
                       return (
                         <Link key={index2} href={menu.route}>
-                          <button disabled={!menu.show} className={`full-hover text-sm flex items-center gap-2 py-3 px-5 relative ${menu.id == isActive && 'bg-blue-200'}`}>
+                          <button disabled={!menu.show} className={`full-hover text-sm flex items-center gap-2 py-3 px-5 relative ${menu.id == splitActive && 'bg-blue-200 hover:bg-blue-200'}`}>
                             <Icon icon={menu.icon} className="text-blue-500 text-xl"/>
                             {menu.name}
                           </button>

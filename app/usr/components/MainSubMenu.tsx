@@ -12,13 +12,13 @@ export default function MainSubMenu({
     menus: MenusList[]
 }) {
     const [submenu, setSubMenu] = useState<MenusList[]>([])
-    const [subactive, setSubactive] = useState('')
     const pathname = usePathname()
 
 
     useEffect(() => {
         if(menus && active){
-            const filter = menus.filter(res => res.parent === active)
+            const split = active.split("_").slice(0, 2).join("_")
+            const filter = menus.filter(res => res.parent === split)
             setSubMenu(filter)
         }
     }, [active])
@@ -36,7 +36,7 @@ export default function MainSubMenu({
                             </div>
                         )}
                         <Link key={index} href={item.route}>
-                            <button className={`${item.route == pathname && 'bg-blue-200'} full-hover text-sm flex items-center gap-2 py-3 px-5`}>
+                            <button className={`${item.route == pathname && 'bg-blue-200 hover:bg-blue-200'} full-hover text-sm flex items-center gap-2 py-3 px-5`}>
                                 <Icon icon={item.icon} className="text-xl text-blue-500"/>
                                 {item.name}
                             </button>
