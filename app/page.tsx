@@ -1,33 +1,13 @@
-// app/page.tsx
 'use client'
-import { useGlobalContext } from '@@/src/context/GlobalContext';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation'
+import React, { useEffect } from 'react'
 
-export default function Home() {
-  const { state, setState } = useGlobalContext();
-  const data = state?.dataCollection
-
-  const getData = async () => {
-    const result = await axios.get('/api/data')
-    console.log(result)
-    setState({ ...state, dataCollection: result.data })
-  }
-
+export default function HalamanUtama() {
+  const router = useRouter()
   useEffect(() => {
-    if(!state?.dataCollection){
-      getData()
-    }
-  }, [state]);
-
+    router.push('/auth')
+  }, [router])
   return (
-    <div>
-      <h1>Welcome to Admin Dashboard</h1>
-      {
-        data && data.map((item: any) => {
-          return item
-        })
-      }
-    </div>
-  );
+    <div></div>
+  )
 }
